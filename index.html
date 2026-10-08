@@ -380,7 +380,8 @@
     height: auto;
     display: block;
     margin: 0 auto 20px;
-    filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.5));
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55);
   }
 
   .mockup-caption {
@@ -751,7 +752,7 @@
     <p class="reveal">Several months later, I founded eBuya, my tech startup, and my priorities changed.</p>
 
     <div class="story-creator reveal-scale">
-      <img src="simon-peter.jpg" alt="Simon-Peter Joseph, creator of Speedrun">
+      <img src="images/simon-peter.jpg" alt="Simon-Peter Joseph, creator of Speedrun">
       <div class="creator-name">Simon-Peter Joseph</div>
       <div class="creator-label">Creator of Speedrun</div>
     </div>
@@ -775,7 +776,7 @@
     <p class="reveal">My first four posts each generated at least 150 engagements.</p>
 
     <figure class="story-shot reveal-scale">
-      <img src="mypostresults.png" alt="Founder's first four posts">
+      <img src="images/mypostresults.png" alt="Founder's first four posts">
       <figcaption class="shot-caption">Proof of my first four posts, each with 150+ engagements.</figcaption>
     </figure>
 
@@ -787,7 +788,7 @@
     <p class="reveal">Her first four posts each generated at least 250 engagements.</p>
 
     <figure class="story-shot reveal-scale">
-      <img src="herpostresults.png" alt="Friend's first four posts">
+      <img src="images/herpostresults.png" alt="Friend's first four posts">
       <figcaption class="shot-caption">Proof of her first four posts, each with 250+ engagements.</figcaption>
     </figure>
 
@@ -803,14 +804,14 @@
     <p class="reveal">We began getting comments on our posts pointing out how unusually fast our accounts were growing.</p>
 
     <figure class="story-shot reveal-scale">
-      <img src="comments.png" alt="Comments about how fast we were growing">
+      <img src="images/comments.png" alt="Comments about how fast we were growing">
       <figcaption class="shot-caption">Proof of comments on our posts about how fast we were growing.</figcaption>
     </figure>
 
     <p class="statement reveal-left">We also started getting DMs from people who wanted to do business with us.</p>
 
     <figure class="story-shot reveal-scale">
-      <img src="herpostresults.png" alt="Business inquiry DM">
+      <img src="images/herpostresults.png" alt="Business inquiry DM">
       <figcaption class="shot-caption">Proof of the DM she received.</figcaption>
     </figure>
 
@@ -819,7 +820,7 @@
     <p class="reveal">That changed when I came across a post from a lady referencing research that suggested it takes roughly <span class="gold">95 days</span> to get to 1,000 followers on LinkedIn.</p>
 
     <figure class="story-shot reveal-scale">
-      <img src="95dayspost.png" alt="Post referencing 95-day average">
+      <img src="images/95dayspost.png" alt="Post referencing 95-day average">
       <figcaption class="shot-caption">The post that reframed what I thought was normal.</figcaption>
     </figure>
 
@@ -852,7 +853,7 @@
   <div class="container">
     <img
       class="mockup-image reveal-scale"
-      src="speedrunmockup.jpg"
+      src="images/speedrunmockup.jpg"
       alt="Speedrun product mock-up"
     >
     <p class="mockup-caption reveal">The exact strategy I used and taught my friend.</p>
@@ -977,7 +978,6 @@
 <script>
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7G-yKqLczTFWbTcgVbGUbkMlljEgF9Vsm6r9AvwvnDGd-QlbNuXPUqFDp56EUFHsbXA/exec";
 
-  // Countdown target: October 30, 2026, 11:59:59 PM WAT (GMT+1)
   const LAUNCH_DATE = "2026-10-30T23:59:59+01:00";
 
   document.getElementById("year").textContent = new Date().getFullYear();
