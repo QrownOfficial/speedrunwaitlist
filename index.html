@@ -256,6 +256,16 @@
     color: var(--white);
   }
 
+  .story .beat {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-align: center;
+    margin: 48px 0;
+  }
+
   .story .closing {
     font-size: 21px;
     font-weight: 700;
@@ -301,6 +311,7 @@
     .story p { font-size: 16px; }
     .story .highlight { font-size: 18px; }
     .story .statement { font-size: 17px; }
+    .story .beat { font-size: 21px; }
     .story .closing { font-size: 18px; }
   }
 
@@ -592,11 +603,31 @@
 
   .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-  .form-note {
+  .form-closing {
+    margin-top: 32px;
     text-align: center;
-    font-size: 14px;
-    color: var(--muted);
-    margin-top: 18px;
+  }
+
+  .form-closing .nudge-line {
+    font-size: 16px;
+    color: var(--white);
+    line-height: 1.55;
+    max-width: 480px;
+    margin: 0 auto 36px;
+  }
+
+  .form-closing .see-you-line {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .form-closing .nudge-line { font-size: 15px; }
+    .form-closing .see-you-line { font-size: 19px; }
   }
 
   .form-error-banner {
@@ -758,7 +789,7 @@
   <div class="container">
     <h2 class="story-heading reveal">Okay, but why should you listen to me?</h2>
 
-    <p class="reveal">First of all, I'm not a LinkedIn guru, and I'm not here to pretend I have everything figured out.</p>
+    <p class="reveal">Firstly, I'm not a LinkedIn guru, and I'm not here to pretend I have everything figured out.</p>
 
     <p class="reveal">I created my LinkedIn account almost two years ago to source for clients as a copywriter.</p>
     <p class="reveal">But I found the platform cringe.</p>
@@ -776,8 +807,7 @@
     <p class="reveal">So I came back to LinkedIn and started building.</p>
     <p class="reveal">Although I was no longer actively working as a copywriter, I still had the skills.</p>
     <p class="reveal">As a busy founder, I knew I needed to find a way to grow faster without spending hours doing things I didn't believe were necessary.</p>
-    <p class="reveal">I wanted to build an engaged community that would consistently put me and my brand in front of the right people.</p>
-    <p class="reveal">I wanted it to help me achieve the goals I had for my personal brand and company.</p>
+    <p class="reveal">I wanted to build an engaged community that would consistently put me and my brand in front of the right people, and help me achieve my goals.</p>
     <p class="reveal">So I studied the platform.</p>
     <p class="reveal">I combined what I learned with my copywriting skills and some technical knowledge.</p>
     <p class="reveal">Then I developed a strategy I could actually use.</p>
@@ -788,11 +818,11 @@
     <p class="highlight reveal">I grew from <span class="gold">21 followers</span> to <span class="gold">1,000+</span> in <span class="gold">25 days</span>.</p>
 
     <p class="reveal">I published 14 posts along the way.</p>
-    <p class="reveal">My first four posts each generated at least 150 engagements.</p>
+    <p class="reveal">My first four posts each averaged 200+ engagements.</p>
 
     <figure class="story-shot reveal-scale">
       <img src="images/mypostresults.png" alt="Founder's first four posts">
-      <figcaption class="shot-caption">Proof of my first four posts, each with 150+ engagements.</figcaption>
+      <figcaption class="shot-caption">Proof of my first four posts, each with 200+ engagements.</figcaption>
     </figure>
 
     <p class="reveal">I then applied the same strategy to one of my friends.</p>
@@ -800,11 +830,11 @@
 
     <p class="statement reveal-left">She reached <span class="gold">1,000+ followers</span> in about <span class="gold">18 days</span> with just 7 posts.</p>
 
-    <p class="reveal">Her first four posts each generated at least 250 engagements.</p>
+    <p class="reveal">Her first four posts each averaged 450+ engagements.</p>
 
     <figure class="story-shot reveal-scale">
       <img src="images/herpostresults.png" alt="Friend's first four posts">
-      <figcaption class="shot-caption">Proof of her first four posts, each with 250+ engagements.</figcaption>
+      <figcaption class="shot-caption">Proof of her first four posts, each with 450+ engagements.</figcaption>
     </figure>
 
     <p class="statement reveal-left">We both reached <span class="gold">1,000 followers</span> on the same day.</p>
@@ -812,9 +842,12 @@
     <p class="reveal">Since then, her account has grown significantly beyond mine.</p>
     <p class="reveal">More importantly, the engagement has continued.</p>
 
-    <p class="statement reveal-left">Today, we both average <span class="gold">100 engagements per post</span>.</p>
+    <p class="statement reveal-left">Today, we both average <span class="gold">150 engagements per post</span>.</p>
 
     <p class="reveal">Our accounts are getting levels of engagement that accounts more than 5X our size are struggling to get.</p>
+
+    <p class="beat reveal">And guess what?</p>
+
     <p class="reveal">People started noticing too.</p>
     <p class="reveal">We began getting comments on our posts pointing out how unusually fast our accounts were growing.</p>
 
@@ -829,6 +862,8 @@
       <img src="images/herpostresults.png" alt="Business inquiry DM">
       <figcaption class="shot-caption">Proof of the DM she received.</figcaption>
     </figure>
+
+    <p class="beat reveal">And the funny thing is that...</p>
 
     <p class="reveal">I didn't think much of it at first.</p>
     <p class="reveal">I still thought this kind of growth was normal.</p>
@@ -923,7 +958,7 @@
   <section class="waitlist" id="waitlist">
     <div class="container">
       <div class="waitlist-head reveal">
-        <h2>Join the <span class="brand-mention">Speedrun</span> waitlist</h2>
+        <h2>Join <span class="gold">50+ people</span> on the <span class="brand-mention">Speedrun</span> waitlist</h2>
         <p>Drop your details and I'll send you <span class="brand-mention">Speedrun</span> the moment it's ready.</p>
       </div>
 
@@ -953,7 +988,11 @@
           </div>
 
           <button type="submit" class="submit-btn" id="submitBtn">Join the waitlist</button>
-          <p class="form-note">The first version of <span class="brand-mention">Speedrun</span> is completely free.</p>
+
+          <div class="form-closing">
+            <p class="nudge-line">If I were you, I'd grab this opportunity now that there's no cost attached to it, because it won't remain so for long.</p>
+            <p class="see-you-line">See you on the other side.</p>
+          </div>
         </form>
       </div>
     </div>
