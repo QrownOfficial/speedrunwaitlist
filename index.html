@@ -868,7 +868,7 @@
     <p class="statement reveal-left">We also started getting DMs from people who wanted to do business with us.</p>
 
     <figure class="story-shot reveal-scale">
-      <img src="images/herpostresults.png" alt="Business inquiry DM">
+      <img src="images/herdm.jpg" alt="Business inquiry DM">
       <figcaption class="shot-caption">Proof of the DM she received.</figcaption>
     </figure>
 
@@ -1208,9 +1208,6 @@
         throw new Error(data.error || "Submission failed. Please try again.");
       }
 
-      // ==========================================
-      // GA4 EVENT — waitlist submission
-      // ==========================================
       if (typeof gtag === "function") {
         if (data.duplicate) {
           gtag("event", "waitlist_duplicate", {
