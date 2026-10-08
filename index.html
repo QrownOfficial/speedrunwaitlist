@@ -1,1 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speedrun | LinkedIn Growth, Simplified</title>
 
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080D17;
+    --white: #F5F5F2;
+    --gold: #D4AF37;
+    --muted: rgba(245, 245, 242, 0.6);
+    --line-dark: rgba(245, 245, 242, 0.1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .container-wide {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section { padding: 64px 0; }
+
+  h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+
+  p { margin-bottom: 22px; }
+  p:last-child { margin-bottom: 0; }
+
+  .gold { color: var(--gold); }
+  .muted { color: var(--muted); }
+  .brand-mention { font-weight: 700; color: var(--white); }
+
+  /* ============================================
+     ANIMATION BASE
+     ============================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-hook { animation: heroIn 0.9s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero h1   { animation: heroIn 0.9s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero-support { animation: heroIn 0.9s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero-cta-wrap { animation: heroIn 0.9s 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  @keyframes numPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+
+  .timer-num.pulse {
+    animation: numPulse 0.4s ease-out;
+  }
+
+  /* ============================================
+     BUTTONS
+     ============================================ */
+  .btn {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 34px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  .btn-gold:hover {
+    opacity: 0.94;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 28px rgba(212, 175, 55, 0.28);
+  }
+
+  .btn-gold:active {
+    transform: translateY(0) scale(1);
+  }
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero {
+    padding: 88px 0 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.07), transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-hook {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 28px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .hero-support {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 36px;
+    position: relative;
+  }
+
+  .hero-cta-note {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+
+  @media (max-width: 720px) {
+    .hero { padding: 64px 0 40px; }
+    .hero h1 { font-size: 32px; }
+    .hero-hook { font-size: 15px; }
+    .hero-support { font-size: 15px; }
+  }
+
+  /* ============================================
+     STORY
+     ============================================ */
+  .story {
+    padding: 32px 0 56px;
+  }
+
+  .story p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .story .highlight {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 36px 0;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .story .statement {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 32px 0;
+    padding-left: 18px;
+    border-left: 2px solid var(--gold);
+    color: var(--white);
+  }
+
+  .story .closing {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 40px 0 0;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .story-creator {
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  .story-creator img {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto 20px;
+    background: #131926;
+    border: 1px solid var(--line-dark);
+  }
+
+  .story-creator .creator-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .story-creator .creator-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  @media (max-width: 720px) {
+    .story p { font-size: 16px; }
+    .story .highlight { font-size: 18px; }
+    .story .statement { font-size: 17px; }
+    .story .closing { font-size: 18px; }
+  }
+
+  /* ============================================
+     SCREENSHOTS
+     ============================================ */
+  .story-shot {
+    margin: 36px 0;
+    text-align: center;
+  }
+
+  .story-shot img {
+    width: 100%;
+    max-width: 420px;
+    display: block;
+    margin: 0 auto 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line-dark);
+  }
+
+  .shot-caption {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* ============================================
+     WHO SPEEDRUN IS FOR
+     ============================================ */
+  .who-for {
+    padding: 72px 0;
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .who-for h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .who-for p {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--white);
+    margin-bottom: 24px;
+    text-align: center;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .who-for p:last-child { margin-bottom: 0; }
+
+  .who-for .statement {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+    padding-left: 18px;
+    border-left: 2px solid var(--gold);
+    text-align: left;
+    max-width: 620px;
+  }
+
+  @media (max-width: 720px) {
+    .who-for p { font-size: 16px; }
+    .who-for .statement { font-size: 17px; }
+  }
+
+  /* ============================================
+     PRODUCT
+     ============================================ */
+  .product {
+    padding: 72px 0 56px;
+    text-align: center;
+  }
+
+  .mockup-image {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.5));
+  }
+
+  .mockup-caption {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ============================================
+     INVITATION
+     ============================================ */
+  .invitation {
+    padding: 64px 0;
+    text-align: center;
+  }
+
+  .invitation p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.55;
+    max-width: 620px;
+    margin: 0 auto 32px;
+    color: var(--white);
+  }
+
+  .invitation-free {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--white);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 720px) {
+    .invitation p { font-size: 17px; }
+    .invitation-free { font-size: 17px; }
+  }
+
+  /* ============================================
+     COUNTDOWN
+     ============================================ */
+  .countdown {
+    padding: 72px 0;
+    text-align: center;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .countdown h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 40px;
+  }
+
+  .timer {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: nowrap;
+  }
+
+  .timer-unit {
+    min-width: 92px;
+    padding: 22px 12px;
+    background: rgba(245, 245, 242, 0.02);
+    border: 1px solid rgba(245, 245, 242, 0.08);
+    border-radius: 8px;
+  }
+
+  .timer-num {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .timer-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 720px) {
+    .timer { gap: 8px; }
+    .timer-unit { min-width: 68px; padding: 16px 6px; }
+    .timer-num { font-size: 26px; }
+    .timer-label { font-size: 9px; letter-spacing: 0.1em; }
+  }
+
+  /* ============================================
+     WAITLIST
+     ============================================ */
+  .waitlist { padding: 72px 0; }
+
+  .waitlist-head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .waitlist-head h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .waitlist-head p {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .form-card { max-width: 520px; margin: 0 auto; }
+
+  .field { margin-bottom: 26px; }
+
+  .field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .field .hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--white);
+    background: rgba(245, 245, 242, 0.04);
+    border: 1px solid rgba(245, 245, 242, 0.15);
+    border-radius: 6px;
+    padding: 14px 16px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(245, 245, 242, 0.06);
+  }
+
+  .field textarea { min-height: 96px; resize: vertical; }
+
+  .field input.error,
+  .field textarea.error {
+    border-color: #c15b5b;
+    background: rgba(193, 91, 91, 0.06);
+  }
+
+  .error-msg {
+    display: none;
+    font-size: 13px;
+    color: #e08585;
+    margin-top: 6px;
+  }
+
+  .error-msg.show { display: block; }
+
+  .submit-btn {
+    width: 100%;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    border-radius: 6px;
+    padding: 18px 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    opacity: 0.94;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(212, 175, 55, 0.28);
+  }
+
+  .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+  .form-note {
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 18px;
+  }
+
+  .form-error-banner {
+    display: none;
+    background: rgba(193, 91, 91, 0.12);
+    border: 1px solid rgba(193, 91, 91, 0.4);
+    color: #e8a5a5;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .form-error-banner.show { display: block; }
+
+  /* ============================================
+     CONFIRMATION
+     ============================================ */
+  .confirm {
+    display: none;
+    padding: 72px 0;
+    text-align: center;
+  }
+
+  .confirm.show {
+    display: block;
+    animation: heroIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .form-state.hide { display: none; }
+
+  .confirm-card {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .confirm-check {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 auto 24px;
+  }
+
+  .confirm h2 {
+    font-size: 26px;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .confirm-body {
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .confirm-ps {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  .confirm-divider {
+    height: 1px;
+    background: var(--line-dark);
+    margin: 0 auto 40px;
+    max-width: 80px;
+  }
+
+  .confirm-wa-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .confirm-wa-body {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .wa-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #25D366;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 18px 32px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease;
+  }
+
+  .wa-btn:hover {
+    opacity: 0.94;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(37, 211, 102, 0.3);
+  }
+
+  /* ============================================
+     FOOTER
+     ============================================ */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--line-dark);
+    text-align: center;
+  }
+
+  footer .brand {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  footer p { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-hook">
+      You shouldn't have to spend your entire day on LinkedIn just to grow on the platform.
+    </p>
+
+    <h1>
+      Get your first <span class="gold">1K followers</span> and more on LinkedIn and build an engaged community in <span class="gold">30 days or less</span>.
+    </h1>
+
+    <p class="hero-support">
+      Without spending hours commenting before and after every post, joining engagement groups, randomly sending hundreds of connection requests, copying viral hooks, posting every day just to stay visible, or chasing vanity metrics.
+    </p>
+
+    <div class="hero-cta-wrap">
+      <a href="#waitlist" class="btn btn-gold">Join the waitlist</a>
+      <p class="hero-cta-note">You're not paying for anything.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     STORY
+     ============================================ -->
+<section class="story">
+  <div class="container">
+    <p class="reveal">I created my LinkedIn account almost two years ago to source for clients as a copywriter.</p>
+    <p class="reveal">But I found the platform cringe.</p>
+    <p class="reveal">I couldn't bring myself to do many of the things people seemed to do for impressions and growth, like spending hours commenting before and after posts, joining engagement groups, spamming connection requests, copying viral hooks, or constantly posting just to stay visible.</p>
+    <p class="reveal">So I left LinkedIn and focused on Instagram instead.</p>
+    <p class="reveal">Several months later, I founded eBuya, my tech startup, and my priorities changed.</p>
+
+    <div class="story-creator reveal-scale">
+      <img src="simon-peter.jpg" alt="Simon-Peter Joseph, creator of Speedrun">
+      <div class="creator-name">Simon-Peter Joseph</div>
+      <div class="creator-label">Creator of Speedrun</div>
+    </div>
+
+    <p class="reveal">I realised I needed to build my personal brand on LinkedIn to grow my influence, increase my visibility, and open doors to investment opportunities for my company.</p>
+    <p class="reveal">So I came back to LinkedIn and started building.</p>
+    <p class="reveal">Although I was no longer actively working as a copywriter, I still had the skills.</p>
+    <p class="reveal">As a busy founder, I knew I needed to find a way to grow faster without spending hours doing things I didn't believe were necessary.</p>
+    <p class="reveal">I wanted to build an engaged community that would consistently put me and my brand in front of the right people.</p>
+    <p class="reveal">I wanted it to help me achieve the goals I had for my personal brand and company.</p>
+    <p class="reveal">So I studied the platform.</p>
+    <p class="reveal">I combined what I learned with my copywriting skills and some technical knowledge.</p>
+    <p class="reveal">Then I developed a strategy I could actually use.</p>
+    <p class="reveal">At the time, my account had only 21 followers.</p>
+    <p class="reveal">That was where it had remained since I created it almost two years earlier.</p>
+    <p class="reveal">I started implementing the strategy.</p>
+
+    <p class="highlight reveal">I grew from <span class="gold">21 followers</span> to <span class="gold">1,000+</span> in <span class="gold">25 days</span>.</p>
+
+    <p class="reveal">I published 14 posts along the way.</p>
+    <p class="reveal">My first four posts each generated at least 150 engagements.</p>
+
+    <figure class="story-shot reveal-scale">
+      <img src="mypostresults.png" alt="Founder's first four posts">
+      <figcaption class="shot-caption">Proof of my first four posts, each with 150+ engagements.</figcaption>
+    </figure>
+
+    <p class="reveal">I then applied the same strategy to one of my friends.</p>
+    <p class="reveal">Her account had been created about a week after I started implementing the strategy.</p>
+
+    <p class="statement reveal-left">She reached <span class="gold">1,000+ followers</span> in about <span class="gold">18 days</span> with just 7 posts.</p>
+
+    <p class="reveal">Her first four posts each generated at least 250 engagements.</p>
+
+    <figure class="story-shot reveal-scale">
+      <img src="herpostresults.png" alt="Friend's first four posts">
+      <figcaption class="shot-caption">Proof of her first four posts, each with 250+ engagements.</figcaption>
+    </figure>
+
+    <p class="statement reveal-left">We both reached <span class="gold">1,000 followers</span> on the same day.</p>
+
+    <p class="reveal">Since then, her account has grown significantly beyond mine.</p>
+    <p class="reveal">More importantly, the engagement has continued.</p>
+
+    <p class="statement reveal-left">Today, we both average <span class="gold">100 engagements per post</span>.</p>
+
+    <p class="reveal">Our accounts are getting levels of engagement that accounts more than 5X our size are struggling to get.</p>
+    <p class="reveal">People started noticing too.</p>
+    <p class="reveal">We began getting comments on our posts pointing out how unusually fast our accounts were growing.</p>
+
+    <figure class="story-shot reveal-scale">
+      <img src="comments.png" alt="Comments about how fast we were growing">
+      <figcaption class="shot-caption">Proof of comments on our posts about how fast we were growing.</figcaption>
+    </figure>
+
+    <p class="statement reveal-left">We also started getting DMs from people who wanted to do business with us.</p>
+
+    <figure class="story-shot reveal-scale">
+      <img src="herpostresults.png" alt="Business inquiry DM">
+      <figcaption class="shot-caption">Proof of the DM she received.</figcaption>
+    </figure>
+
+    <p class="reveal">I didn't think much of it at first.</p>
+    <p class="reveal">I still thought this kind of growth was normal.</p>
+    <p class="reveal">That changed when I came across a post from a lady referencing research that suggested it takes roughly <span class="gold">95 days</span> to get to 1,000 followers on LinkedIn.</p>
+
+    <figure class="story-shot reveal-scale">
+      <img src="95dayspost.png" alt="Post referencing 95-day average">
+      <figcaption class="shot-caption">The post that reframed what I thought was normal.</figcaption>
+    </figure>
+
+    <p class="reveal">I also started seeing other posts on my timeline saying similar things.</p>
+    <p class="reveal">That's when it clicked.</p>
+
+    <p class="statement reveal-left">I might have developed one of the fastest ways to grow on LinkedIn and build an engaged community without relying on all the things I had initially found so off-putting about the platform.</p>
+
+    <p class="closing reveal">That's what led to <span class="brand-mention">Speedrun</span>.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     WHO SPEEDRUN IS FOR
+     ============================================ -->
+<section class="who-for">
+  <div class="container">
+    <h2 class="reveal">Who <span class="brand-mention">Speedrun</span> Is For</h2>
+    <p class="reveal"><span class="brand-mention">Speedrun</span> is for anyone who wants to grow on LinkedIn intentionally, build an engaged community, and create more visibility and opportunities.</p>
+    <p class="reveal">Whether you have 0 followers or 10,000+, you can benefit from <span class="brand-mention">Speedrun</span>.</p>
+    <p class="statement reveal-left">The 1K milestone is simply where the journey starts.</p>
+    <p class="statement reveal-left">The goal isn't just more followers, but building an audience that cares about what you have to say, engages with your content, and creates opportunities around your personal brand.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     PRODUCT MOCK-UP
+     ============================================ -->
+<section class="product">
+  <div class="container">
+    <img
+      class="mockup-image reveal-scale"
+      src="speedrunmockup.jpg"
+      alt="Speedrun product mock-up"
+    >
+    <p class="mockup-caption reveal">The exact strategy I used and taught my friend.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     INVITATION
+     ============================================ -->
+<section class="invitation">
+  <div class="container">
+    <p class="reveal">
+      If you want to grow on LinkedIn, build an engaged community, and create more visibility and opportunities as quickly as possible, without becoming consumed by the usual LinkedIn growth rituals, join the waitlist.
+    </p>
+    <p class="invitation-free reveal">
+      You'll get access to the first version of <span class="brand-mention">Speedrun</span> <span class="gold">completely free</span>.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================
+     COUNTDOWN
+     ============================================ -->
+<section class="countdown">
+  <div class="container-wide">
+    <h2 class="reveal"><span class="brand-mention">Speedrun</span> is <span class="gold">coming</span></h2>
+    <div class="timer reveal" id="timer">
+      <div class="timer-unit">
+        <div class="timer-num" id="days">--</div>
+        <div class="timer-label">Days</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-num" id="hours">--</div>
+        <div class="timer-label">Hours</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-num" id="minutes">--</div>
+        <div class="timer-label">Minutes</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-num" id="seconds">--</div>
+        <div class="timer-label">Seconds</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FORM STATE
+     ============================================ -->
+<div class="form-state" id="formState">
+  <section class="waitlist" id="waitlist">
+    <div class="container">
+      <div class="waitlist-head reveal">
+        <h2>Join the <span class="brand-mention">Speedrun</span> waitlist</h2>
+        <p>Drop your details and I'll send you <span class="brand-mention">Speedrun</span> the moment it's ready.</p>
+      </div>
+
+      <div class="form-card reveal">
+        <div class="form-error-banner" id="formErrorBanner"></div>
+
+        <form id="waitlistForm" novalidate>
+          <div class="field">
+            <label for="full_name">Full name</label>
+            <div class="hint">Enter your first and last name.</div>
+            <input type="text" id="full_name" name="full_name" autocomplete="name">
+            <div class="error-msg" id="err-full_name">Please enter your full name.</div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <div class="hint">Use an active email address so we can send you Speedrun updates and important information.</div>
+            <input type="email" id="email" name="email" autocomplete="email">
+            <div class="error-msg" id="err-email">Please enter a valid email address.</div>
+          </div>
+
+          <div class="field">
+            <label for="learning_interest">What would you most want to learn from Speedrun?</label>
+            <div class="hint">Tell me what you're hoping to learn, improve, or achieve on LinkedIn.</div>
+            <textarea id="learning_interest" name="learning_interest"></textarea>
+            <div class="error-msg" id="err-learning_interest">Please tell me what you'd like to learn.</div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">Join the waitlist</button>
+          <p class="form-note">The first version of <span class="brand-mention">Speedrun</span> is completely free.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================
+     CONFIRMATION STATE
+     ============================================ -->
+<div class="confirm" id="confirmState">
+  <div class="container">
+    <div class="confirm-card">
+      <div class="confirm-check">✓</div>
+      <h2 id="confirmHeading">You've been successfully added to the <span class="brand-mention">Speedrun</span> Waitlist.</h2>
+      <p class="confirm-body" id="confirmBody">Please, check your email for further instructions.</p>
+      <p class="confirm-ps" id="confirmPs">P.S. If you don't see the email, kindly check your spam or promotion folder.</p>
+
+      <div class="confirm-divider"></div>
+
+      <p class="confirm-wa-heading">Now, join the <span class="brand-mention">Speedrun</span> WhatsApp community.</p>
+      <p class="confirm-wa-body">That's where I'll share updates and everything else as we get closer to launch.</p>
+      <a class="wa-btn" href="https://chat.whatsapp.com/KefOF1NqiAj674dX5kDENu" target="_blank" rel="noopener">Join the WhatsApp Community</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer>
+  <div class="container">
+    <div class="brand">SPEED<span class="gold">RUN</span></div>
+    <p>© <span id="year"></span> Simon-Peter Joseph. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7G-yKqLczTFWbTcgVbGUbkMlljEgF9Vsm6r9AvwvnDGd-QlbNuXPUqFDp56EUFHsbXA/exec";
+
+  // Countdown target: October 30, 2026, 11:59:59 PM WAT (GMT+1)
+  const LAUNCH_DATE = "2026-10-30T23:59:59+01:00";
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // ============================================
+  // SCROLL REVEAL
+  // ============================================
+  const revealEls = document.querySelectorAll(".reveal, .reveal-left, .reveal-scale");
+
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        io.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -8% 0px"
+  });
+
+  revealEls.forEach(function (el, index) {
+    el.style.transitionDelay = (Math.min(index % 5, 4) * 40) + "ms";
+    io.observe(el);
+  });
+
+  // ============================================
+  // COUNTDOWN
+  // ============================================
+  const launch = new Date(LAUNCH_DATE);
+  const elDays = document.getElementById("days");
+  const elHours = document.getElementById("hours");
+  const elMins = document.getElementById("minutes");
+  const elSecs = document.getElementById("seconds");
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+
+  function pulse(el, oldVal, newVal) {
+    if (oldVal !== newVal) {
+      el.classList.remove("pulse");
+      void el.offsetWidth;
+      el.classList.add("pulse");
+    }
+  }
+
+  function tick() {
+    const now = new Date();
+    let diff = Math.max(0, launch - now);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff -= days * (1000 * 60 * 60 * 24);
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    diff -= hours * (1000 * 60 * 60);
+    const mins = Math.floor(diff / (1000 * 60));
+    diff -= mins * (1000 * 60);
+    const secs = Math.floor(diff / 1000);
+
+    const dStr = pad(days), hStr = pad(hours), mStr = pad(mins), sStr = pad(secs);
+
+    pulse(elDays, elDays.textContent, dStr);
+    pulse(elHours, elHours.textContent, hStr);
+    pulse(elMins, elMins.textContent, mStr);
+    pulse(elSecs, elSecs.textContent, sStr);
+
+    elDays.textContent = dStr;
+    elHours.textContent = hStr;
+    elMins.textContent = mStr;
+    elSecs.textContent = sStr;
+  }
+
+  tick();
+  setInterval(tick, 1000);
+
+  // ============================================
+  // FORM
+  // ============================================
+  const form = document.getElementById("waitlistForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const formState = document.getElementById("formState");
+  const confirmState = document.getElementById("confirmState");
+  const confirmHeading = document.getElementById("confirmHeading");
+  const confirmBody = document.getElementById("confirmBody");
+  const confirmPs = document.getElementById("confirmPs");
+  const errorBanner = document.getElementById("formErrorBanner");
+
+  const fields = {
+    full_name: document.getElementById("full_name"),
+    email: document.getElementById("email"),
+    learning_interest: document.getElementById("learning_interest")
+  };
+
+  function showFieldError(name, show) {
+    const input = fields[name];
+    const msg = document.getElementById("err-" + name);
+    if (show) {
+      input.classList.add("error");
+      msg.classList.add("show");
+    } else {
+      input.classList.remove("error");
+      msg.classList.remove("show");
+    }
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function validate() {
+    let valid = true;
+    const name = fields.full_name.value.trim();
+    const email = fields.email.value.trim();
+    const interest = fields.learning_interest.value.trim();
+
+    if (!name) { showFieldError("full_name", true); valid = false; }
+    else { showFieldError("full_name", false); }
+
+    if (!email || !isValidEmail(email)) { showFieldError("email", true); valid = false; }
+    else { showFieldError("email", false); }
+
+    if (!interest) { showFieldError("learning_interest", true); valid = false; }
+    else { showFieldError("learning_interest", false); }
+
+    return valid;
+  }
+
+  Object.keys(fields).forEach(function (key) {
+    fields[key].addEventListener("input", function () {
+      showFieldError(key, false);
+    });
+  });
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    errorBanner.classList.remove("show");
+
+    if (!validate()) {
+      errorBanner.textContent = "Please fix the highlighted fields.";
+      errorBanner.classList.add("show");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+
+    try {
+      const params = new URLSearchParams();
+      params.append("full_name", fields.full_name.value.trim());
+      params.append("email", fields.email.value.trim());
+      params.append("learning_interest", fields.learning_interest.value.trim());
+
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        body: params,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      });
+
+      const text = await response.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (err) {
+        throw new Error("Unexpected server response. Please try again.");
+      }
+
+      if (data.result !== "success") {
+        throw new Error(data.error || "Submission failed. Please try again.");
+      }
+
+      if (data.duplicate) {
+        confirmHeading.innerHTML = 'You\'re already on the <span class="brand-mention">Speedrun</span> Waitlist.';
+        confirmBody.textContent = "Please, check your email for further instructions.";
+        confirmPs.style.display = "block";
+        confirmPs.textContent = "P.S. If you don't see the email, kindly check your spam or promotion folder.";
+      } else if (!data.emailSent) {
+        confirmHeading.innerHTML = 'You\'ve been successfully added to the <span class="brand-mention">Speedrun</span> Waitlist.';
+        confirmBody.textContent = "We couldn't send your confirmation email, but you can still join the WhatsApp community below.";
+        confirmPs.style.display = "none";
+      } else {
+        confirmHeading.innerHTML = 'You\'ve been successfully added to the <span class="brand-mention">Speedrun</span> Waitlist.';
+        confirmBody.textContent = "Please, check your email for further instructions.";
+        confirmPs.style.display = "block";
+        confirmPs.textContent = "P.S. If you don't see the email, kindly check your spam or promotion folder.";
+      }
+
+      formState.classList.add("hide");
+      confirmState.classList.add("show");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+    } catch (err) {
+      errorBanner.textContent = err.message || "Something went wrong. Please try again.";
+      errorBanner.classList.add("show");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Join the waitlist";
+    }
+  });
+</script>
+</body>
+</html>
