@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Speedrun | LinkedIn Growth, Simplified</title>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JEQ4PQ6PHB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JEQ4PQ6PHB');
+</script>
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -1197,6 +1206,25 @@
 
       if (data.result !== "success") {
         throw new Error(data.error || "Submission failed. Please try again.");
+      }
+
+      // ==========================================
+      // GA4 EVENT — waitlist submission
+      // ==========================================
+      if (typeof gtag === "function") {
+        if (data.duplicate) {
+          gtag("event", "waitlist_duplicate", {
+            event_category: "engagement",
+            event_label: "Speedrun Waitlist",
+            email_sent: data.emailSent === true
+          });
+        } else {
+          gtag("event", "waitlist_submit", {
+            event_category: "engagement",
+            event_label: "Speedrun Waitlist",
+            email_sent: data.emailSent === true
+          });
+        }
       }
 
       if (data.duplicate) {
