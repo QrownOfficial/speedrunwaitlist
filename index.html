@@ -1278,7 +1278,9 @@
 
       formState.classList.add("hide");
       confirmState.classList.add("show");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      const confirmTop = confirmState.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: confirmTop - 20, behavior: "smooth" });
 
     } catch (err) {
       errorBanner.textContent = err.message || "Something went wrong. Please try again.";
