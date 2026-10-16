@@ -24,11 +24,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #080D17;
-    --white: #F5F5F2;
-    --gold: #D4AF37;
-    --muted: rgba(245, 245, 242, 0.6);
-    --line-dark: rgba(245, 245, 242, 0.1);
+    --blue: #0A66C2;
+    --white: #FFFFFF;
+    --yellow: #FFD43B;
+    --blue-soft: rgba(10, 102, 194, 0.7);
+    --white-soft: rgba(255, 255, 255, 0.75);
+    --blue-line: rgba(10, 102, 194, 0.15);
+    --white-line: rgba(255, 255, 255, 0.18);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,8 +38,8 @@
 
   body {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--black);
-    color: var(--white);
+    background: var(--white);
+    color: var(--blue);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     font-size: 17px;
@@ -63,9 +65,14 @@
   p { margin-bottom: 22px; }
   p:last-child { margin-bottom: 0; }
 
-  .gold { color: var(--gold); }
-  .muted { color: var(--muted); }
-  .brand-mention { font-weight: 700; color: var(--white); }
+  .yellow { color: var(--yellow); }
+  .brand-mention { font-weight: 700; }
+
+  /* Section backgrounds */
+  .bg-blue { background: var(--blue); color: var(--white); }
+  .bg-blue .brand-mention { color: var(--white); }
+  .bg-white { background: var(--white); color: var(--blue); }
+  .bg-white .brand-mention { color: var(--blue); }
 
   /* ============================================
      ANIMATION BASE
@@ -147,18 +154,18 @@
     transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease;
   }
 
-  .btn-gold {
-    background: var(--gold);
-    color: var(--black);
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--blue);
   }
 
-  .btn-gold:hover {
+  .btn-yellow:hover {
     opacity: 0.94;
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 10px 28px rgba(212, 175, 55, 0.28);
+    box-shadow: 0 10px 28px rgba(255, 212, 59, 0.35);
   }
 
-  .btn-gold:active {
+  .btn-yellow:active {
     transform: translateY(0) scale(1);
   }
 
@@ -170,6 +177,8 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    background: var(--blue);
+    color: var(--white);
   }
 
   .hero::before {
@@ -180,7 +189,7 @@
     transform: translateX(-50%);
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.07), transparent 65%);
+    background: radial-gradient(circle, rgba(255, 212, 59, 0.08), transparent 65%);
     pointer-events: none;
   }
 
@@ -199,11 +208,12 @@
     font-size: 46px;
     margin-bottom: 28px;
     position: relative;
+    color: var(--white);
   }
 
   .hero-support {
     font-size: 17px;
-    color: var(--muted);
+    color: var(--white-soft);
     max-width: 600px;
     margin: 0 auto 36px;
     position: relative;
@@ -211,7 +221,7 @@
 
   .hero-cta-note {
     font-size: 14px;
-    color: var(--muted);
+    color: var(--white-soft);
     margin-top: 16px;
   }
 
@@ -227,6 +237,8 @@
      ============================================ */
   .story {
     padding: 32px 0 56px;
+    background: var(--white);
+    color: var(--blue);
   }
 
   .story-heading {
@@ -234,7 +246,7 @@
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.2;
-    color: var(--white);
+    color: var(--blue);
     margin-bottom: 32px;
     text-align: center;
   }
@@ -243,7 +255,7 @@
     font-size: 17px;
     line-height: 1.7;
     margin-bottom: 20px;
-    color: var(--white);
+    color: var(--blue);
   }
 
   .story .highlight {
@@ -251,7 +263,7 @@
     font-weight: 700;
     line-height: 1.4;
     margin: 36px 0;
-    color: var(--white);
+    color: var(--blue);
     text-align: center;
   }
 
@@ -261,15 +273,15 @@
     line-height: 1.5;
     margin: 32px 0;
     padding-left: 18px;
-    border-left: 2px solid var(--gold);
-    color: var(--white);
+    border-left: 3px solid var(--yellow);
+    color: var(--blue);
   }
 
   .story .emphasis {
     font-size: 20px;
     font-weight: 700;
     line-height: 1.45;
-    color: var(--white);
+    color: var(--blue);
     text-align: center;
     margin: 44px auto;
     max-width: 560px;
@@ -280,7 +292,7 @@
     font-weight: 800;
     line-height: 1.25;
     letter-spacing: -0.02em;
-    color: var(--white);
+    color: var(--blue);
     text-align: center;
     margin: 48px 0;
   }
@@ -290,7 +302,7 @@
     font-weight: 700;
     line-height: 1.4;
     margin: 40px 0 0;
-    color: var(--white);
+    color: var(--blue);
     text-align: center;
   }
 
@@ -307,14 +319,15 @@
     border-radius: 4px;
     display: block;
     margin: 0 auto 20px;
-    background: #131926;
-    border: 1px solid var(--line-dark);
+    background: rgba(10, 102, 194, 0.08);
+    border: 1px solid var(--blue-line);
   }
 
   .story-creator .creator-name {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 6px;
+    color: var(--blue);
   }
 
   .story-creator .creator-label {
@@ -322,7 +335,7 @@
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--blue);
   }
 
   @media (max-width: 720px) {
@@ -349,12 +362,12 @@
     display: block;
     margin: 0 auto 14px;
     border-radius: 8px;
-    border: 1px solid var(--line-dark);
+    border: 1px solid var(--blue-line);
   }
 
   .shot-caption {
     font-size: 13px;
-    color: var(--muted);
+    color: var(--blue-soft);
     font-weight: 500;
     max-width: 420px;
     margin: 0 auto;
@@ -366,8 +379,8 @@
      ============================================ */
   .who-for {
     padding: 72px 0;
-    border-top: 1px solid var(--line-dark);
-    border-bottom: 1px solid var(--line-dark);
+    background: var(--blue);
+    color: var(--white);
   }
 
   .who-for h2 {
@@ -375,7 +388,7 @@
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--yellow);
     text-align: center;
     margin-bottom: 40px;
   }
@@ -398,9 +411,10 @@
     font-weight: 600;
     line-height: 1.5;
     padding-left: 18px;
-    border-left: 2px solid var(--gold);
+    border-left: 3px solid var(--yellow);
     text-align: left;
     max-width: 620px;
+    color: var(--white);
   }
 
   @media (max-width: 720px) {
@@ -414,21 +428,22 @@
   .product {
     padding: 72px 0 56px;
     text-align: center;
+    background: var(--white);
   }
 
   .mockup-image {
     width: 100%;
-    max-width: 340px;
+    max-width: 380px;
     height: auto;
     display: block;
     margin: 0 auto 20px;
-    border-radius: 16px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55);
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(10, 102, 194, 0.18);
   }
 
   .mockup-caption {
     font-size: 15px;
-    color: var(--muted);
+    color: var(--blue-soft);
   }
 
   /* ============================================
@@ -437,6 +452,8 @@
   .invitation {
     padding: 64px 0;
     text-align: center;
+    background: var(--blue);
+    color: var(--white);
   }
 
   .invitation p {
@@ -467,7 +484,8 @@
   .countdown {
     padding: 72px 0;
     text-align: center;
-    border-top: 1px solid var(--line-dark);
+    background: var(--blue);
+    color: var(--white);
   }
 
   .countdown h2 {
@@ -489,8 +507,8 @@
   .timer-unit {
     min-width: 92px;
     padding: 22px 12px;
-    background: rgba(245, 245, 242, 0.02);
-    border: 1px solid rgba(245, 245, 242, 0.08);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--white-line);
     border-radius: 8px;
   }
 
@@ -499,7 +517,7 @@
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1;
-    color: var(--gold);
+    color: var(--yellow);
     font-variant-numeric: tabular-nums;
     margin-bottom: 10px;
     display: inline-block;
@@ -510,7 +528,7 @@
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--white-soft);
   }
 
   @media (max-width: 720px) {
@@ -523,7 +541,10 @@
   /* ============================================
      WAITLIST
      ============================================ */
-  .waitlist { padding: 72px 0; }
+  .waitlist {
+    padding: 72px 0;
+    background: var(--white);
+  }
 
   .waitlist-head {
     text-align: center;
@@ -533,11 +554,12 @@
   .waitlist-head h2 {
     font-size: 32px;
     margin-bottom: 12px;
+    color: var(--blue);
   }
 
   .waitlist-head p {
     font-size: 15px;
-    color: var(--muted);
+    color: var(--blue-soft);
     max-width: 440px;
     margin: 0 auto;
     line-height: 1.55;
@@ -551,13 +573,13 @@
     display: block;
     font-size: 14px;
     font-weight: 700;
-    color: var(--white);
+    color: var(--blue);
     margin-bottom: 6px;
   }
 
   .field .hint {
     font-size: 13px;
-    color: var(--muted);
+    color: var(--blue-soft);
     margin-bottom: 10px;
     line-height: 1.5;
   }
@@ -567,9 +589,9 @@
     width: 100%;
     font-family: inherit;
     font-size: 16px;
-    color: var(--white);
-    background: rgba(245, 245, 242, 0.04);
-    border: 1px solid rgba(245, 245, 242, 0.15);
+    color: var(--blue);
+    background: rgba(10, 102, 194, 0.04);
+    border: 1px solid var(--blue-line);
     border-radius: 6px;
     padding: 14px 16px;
     transition: border-color 0.15s ease, background 0.15s ease;
@@ -578,8 +600,8 @@
   .field input:focus,
   .field textarea:focus {
     outline: none;
-    border-color: var(--gold);
-    background: rgba(245, 245, 242, 0.06);
+    border-color: var(--blue);
+    background: rgba(10, 102, 194, 0.06);
   }
 
   .field textarea { min-height: 96px; resize: vertical; }
@@ -593,7 +615,7 @@
   .error-msg {
     display: none;
     font-size: 13px;
-    color: #e08585;
+    color: #c15b5b;
     margin-top: 6px;
   }
 
@@ -606,8 +628,8 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    background: var(--gold);
-    color: var(--black);
+    background: var(--yellow);
+    color: var(--blue);
     border: none;
     border-radius: 6px;
     padding: 18px 24px;
@@ -618,14 +640,14 @@
   .submit-btn:hover:not(:disabled) {
     opacity: 0.94;
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(212, 175, 55, 0.28);
+    box-shadow: 0 10px 28px rgba(255, 212, 59, 0.4);
   }
 
   .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
   .form-reminder {
     font-size: 14px;
-    color: var(--muted);
+    color: var(--blue-soft);
     text-align: center;
     line-height: 1.55;
     max-width: 460px;
@@ -639,7 +661,7 @@
 
   .form-closing .nudge-line {
     font-size: 16px;
-    color: var(--white);
+    color: var(--blue);
     line-height: 1.55;
     max-width: 480px;
     margin: 0 auto 36px;
@@ -649,7 +671,7 @@
     font-size: 22px;
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--white);
+    color: var(--blue);
     line-height: 1.2;
     margin: 0;
   }
@@ -662,9 +684,9 @@
 
   .form-error-banner {
     display: none;
-    background: rgba(193, 91, 91, 0.12);
-    border: 1px solid rgba(193, 91, 91, 0.4);
-    color: #e8a5a5;
+    background: rgba(193, 91, 91, 0.08);
+    border: 1px solid rgba(193, 91, 91, 0.35);
+    color: #c15b5b;
     padding: 12px 16px;
     border-radius: 6px;
     font-size: 14px;
@@ -680,6 +702,8 @@
     display: none;
     padding: 72px 0;
     text-align: center;
+    background: var(--blue);
+    color: var(--white);
   }
 
   .confirm.show {
@@ -698,8 +722,8 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: var(--gold);
-    color: var(--black);
+    background: var(--yellow);
+    color: var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -712,6 +736,7 @@
     font-size: 26px;
     margin-bottom: 16px;
     letter-spacing: -0.02em;
+    color: var(--white);
   }
 
   .confirm-body {
@@ -722,13 +747,13 @@
 
   .confirm-ps {
     font-size: 13px;
-    color: var(--muted);
+    color: var(--white-soft);
     margin-bottom: 40px;
   }
 
   .confirm-divider {
     height: 1px;
-    background: var(--line-dark);
+    background: var(--white-line);
     margin: 0 auto 40px;
     max-width: 80px;
   }
@@ -759,8 +784,8 @@
   .wa-btn {
     display: inline-block;
     text-decoration: none;
-    background: #25D366;
-    color: #ffffff;
+    background: var(--yellow);
+    color: var(--blue);
     font-weight: 700;
     font-size: 15px;
     padding: 18px 32px;
@@ -771,7 +796,7 @@
   .wa-btn:hover {
     opacity: 0.94;
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(37, 211, 102, 0.3);
+    box-shadow: 0 10px 28px rgba(255, 212, 59, 0.4);
   }
 
   /* ============================================
@@ -779,7 +804,8 @@
      ============================================ */
   footer {
     padding: 40px 0;
-    border-top: 1px solid var(--line-dark);
+    background: var(--blue);
+    color: var(--white);
     text-align: center;
   }
 
@@ -792,7 +818,7 @@
     margin-bottom: 8px;
   }
 
-  footer p { font-size: 13px; color: var(--muted); }
+  footer p { font-size: 13px; color: var(--white-soft); }
 </style>
 </head>
 <body>
@@ -807,7 +833,7 @@
     </p>
 
     <h1>
-      Get your first <span class="gold">1K followers</span> and more on LinkedIn and build an engaged community in <span class="gold">30 days or less</span>.
+      Get your first <span class="yellow">1K followers</span> and more on LinkedIn and build an engaged community in <span class="yellow">30 days or less</span>.
     </h1>
 
     <p class="hero-support">
@@ -815,7 +841,7 @@
     </p>
 
     <div class="hero-cta-wrap">
-      <a href="#waitlist" class="btn btn-gold">Join the waitlist</a>
+      <a href="#waitlist" class="btn btn-yellow">Join the waitlist</a>
       <p class="hero-cta-note">You're not paying for anything.</p>
     </div>
   </div>
@@ -855,7 +881,7 @@
     <p class="reveal">That was where it had remained since I created it almost two years earlier.</p>
     <p class="reveal">I started implementing the strategy.</p>
 
-    <p class="highlight reveal">I grew from <span class="gold">21 followers</span> to <span class="gold">1,000+</span> in <span class="gold">25 days</span>.</p>
+    <p class="highlight reveal">I grew from <span class="yellow">21 followers</span> to <span class="yellow">1,000+</span> in <span class="yellow">25 days</span>.</p>
 
     <p class="reveal">I published 14 posts along the way.</p>
     <p class="reveal">My first four posts each averaged 200+ engagements.</p>
@@ -868,7 +894,7 @@
     <p class="reveal">I then applied the same strategy to one of my friends.</p>
     <p class="reveal">Her account had been created about a week after I started implementing the strategy.</p>
 
-    <p class="statement reveal-left">She reached <span class="gold">1,000+ followers</span> in about <span class="gold">18 days</span> with just 7 posts.</p>
+    <p class="statement reveal-left">She reached <span class="yellow">1,000+ followers</span> in about <span class="yellow">18 days</span> with just 7 posts.</p>
 
     <p class="reveal">Her first four posts each averaged 450+ engagements.</p>
 
@@ -877,12 +903,12 @@
       <figcaption class="shot-caption">Proof of her first four posts, each with 450+ engagements.</figcaption>
     </figure>
 
-    <p class="statement reveal-left">We both reached <span class="gold">1,000 followers</span> on the same day.</p>
+    <p class="statement reveal-left">We both reached <span class="yellow">1,000 followers</span> on the same day.</p>
 
     <p class="reveal">Since then, her account has grown significantly beyond mine.</p>
     <p class="reveal">More importantly, the engagement has continued.</p>
 
-    <p class="statement reveal-left">Today, we both average <span class="gold">150 engagements per post</span>.</p>
+    <p class="statement reveal-left">Today, we both average <span class="yellow">150 engagements per post</span>.</p>
 
     <p class="reveal">Our accounts are getting levels of engagement that accounts more than 5X our size are struggling to get.</p>
 
@@ -903,13 +929,13 @@
       <figcaption class="shot-caption">Proof of the DM she received.</figcaption>
     </figure>
 
-    <p class="emphasis reveal">All of this happened within <span class="gold">25 days</span> of being active on LinkedIn.</p>
+    <p class="emphasis reveal">All of this happened within <span class="yellow">25 days</span> of being active on LinkedIn.</p>
 
     <p class="beat reveal">And the funny thing is that...</p>
 
     <p class="reveal">I didn't think much of it at first.</p>
     <p class="reveal">I still thought this kind of growth was normal.</p>
-    <p class="reveal">That changed when I came across a post from a lady referencing research that suggested it takes roughly <span class="gold">95 days</span> to get to 1,000 followers on LinkedIn.</p>
+    <p class="reveal">That changed when I came across a post from a lady referencing research that suggested it takes roughly <span class="yellow">95 days</span> to get to 1,000 followers on LinkedIn.</p>
 
     <figure class="story-shot reveal-scale">
       <img src="images/95dayspost.png" alt="Post referencing 95-day average">
@@ -961,7 +987,7 @@
       If you want to grow on LinkedIn, build an engaged community, and create more visibility and opportunities as quickly as possible, without becoming consumed by the usual LinkedIn growth rituals, join the waitlist.
     </p>
     <p class="invitation-free reveal">
-      You'll get access to the first version of <span class="brand-mention">Speedrun</span> <span class="gold">completely free</span>.
+      You'll get access to the first version of <span class="brand-mention">Speedrun</span> <span class="yellow">completely free</span>.
     </p>
   </div>
 </section>
@@ -971,7 +997,7 @@
      ============================================ -->
 <section class="countdown">
   <div class="container-wide">
-    <h2 class="reveal"><span class="brand-mention">Speedrun</span> is <span class="gold">coming</span></h2>
+    <h2 class="reveal"><span class="brand-mention">Speedrun</span> is <span class="yellow">coming</span></h2>
     <div class="timer reveal" id="timer">
       <div class="timer-unit">
         <div class="timer-num" id="days">--</div>
@@ -1000,7 +1026,7 @@
   <section class="waitlist" id="waitlist">
     <div class="container">
       <div class="waitlist-head reveal">
-        <h2>Join <span class="gold">50+ people</span> on the <span class="brand-mention">Speedrun</span> waitlist</h2>
+        <h2>Join <span class="yellow">50+ people</span> on the <span class="brand-mention">Speedrun</span> waitlist</h2>
         <p>Drop your details and I'll send you <span class="brand-mention">Speedrun</span> the moment it's ready.</p>
       </div>
 
@@ -1070,7 +1096,7 @@
      ============================================ -->
 <footer>
   <div class="container">
-    <div class="brand">SPEED<span class="gold">RUN</span></div>
+    <div class="brand">SPEED<span class="yellow">RUN</span></div>
     <p>© <span id="year"></span> Simon-Peter Joseph. All rights reserved.</p>
   </div>
 </footer>
